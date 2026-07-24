@@ -1,0 +1,221 @@
+openapi: 3.0.0
+info:
+  title: SideQuest Apps Users API
+  description: API for interacting with SideQuest
+  contact: {}
+  license:
+    name: Private
+  version: 0.2.0
+servers:
+- url: https://api.sidequestvr.com/
+tags:
+- name: Users
+paths:
+  /v2/users/{route_users_id}:
+    summary: Users
+    get:
+      summary: Get User Profile
+      description: 'Retrieves a users profile information, only returns public info for requests made with a scoped token.
+
+
+        ```
+
+        Required Scopes:
+
+        -user.basic_profile.read
+
+        ```'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Composite_UserModel_UserLevelingInfo'
+        '400':
+          description: The data provided to the call was incorrect or incomplete.
+          content:
+            text/plain:
+              schema:
+                type: string
+        '403':
+          description: Access denied- the authorization token provided does not have access to the resource.
+          content:
+            text/plain:
+              schema:
+                type: string
+        '404':
+          description: No resource was found at the target path or the authorization token provided does not have access to know that it exists.
+          content:
+            text/plain:
+              schema:
+                type: string
+      tags:
+      - Users
+      security:
+      - userAuth:
+        - user.basic_profile.read
+      parameters:
+      - name: route_users_id
+        description: 'The users unique ID or "me"
+
+          '
+        schema:
+          type: string
+        in: path
+        required: true
+  /v2/users/{route_users_id}/view-profile:
+    summary: Users
+    get:
+      summary: View User Profile
+      description: Gets a users public profile.
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Composite_PublicUserModel_UserLevelingInfo'
+        '400':
+          description: The data provided to the call was incorrect or incomplete.
+          content:
+            text/plain:
+              schema:
+                type: string
+        '403':
+          description: Access denied- the authorization token provided does not have access to the resource.
+          content:
+            text/plain:
+              schema:
+                type: string
+        '404':
+          description: No resource was found at the target path or the authorization token provided does not have access to know that it exists.
+          content:
+            text/plain:
+              schema:
+                type: string
+      tags:
+      - Users
+      parameters:
+      - name: route_users_id
+        description: 'The users unique ID or "me"
+
+          '
+        schema:
+          type: string
+        in: path
+        required: true
+components:
+  schemas:
+    Composite_PublicUserModel_UserLevelingInfo:
+      type: object
+      properties:
+        profile_type:
+          type: string
+          enum:
+          - Gamer
+          - Developer
+          - Streamer
+          - Influencer
+          description: "The users profile type\n * Gamer - Normal SideQuest user\n * Developer - An app developer\n * Streamer - A streamer or content creator\n * Influencer - A public influencer\n"
+        users_id:
+          type: integer
+          description: The users unique ID
+        name:
+          type: object
+          description: The users display name
+        preview_image:
+          type: string
+          description: The users avatar preview image
+        score_points:
+          type: object
+          description: The users total score points
+        tag_line:
+          type: object
+          description: The users tag line
+        created:
+          type: object
+          description: The time this user was created
+        bio:
+          type: object
+          description: The users bio
+      required:
+      - profile_type
+      - users_id
+      - name
+      - preview_image
+      - score_points
+      - tag_line
+      - created
+      - bio
+      description: public representation of a user
+    Composite_UserModel_UserLevelingInfo:
+      type: object
+      properties:
+        tag_line:
+          type: object
+          description: The users tag line
+        users_id:
+          type: integer
+          description: The users unique ID
+        name:
+          type: object
+          description: The users display name
+        preview_image:
+          type: string
+          description: The users avatar preview image
+        score_points:
+          type: object
+          description: The users total score points
+        bio:
+          type: object
+          description: The users bio
+        banner_image:
+          type: object
+          description: The users banner image
+        donate_url:
+          type: object
+          description: The users donate url
+        profile_type:
+          type: object
+          enum:
+          - Gamer
+          - Developer
+          - Streamer
+          - Influencer
+          description: "The users profile type\n * Gamer - Normal SideQuest user\n * Developer - An app developer\n * Streamer - A streamer or content creator\n * Influencer - A public influencer\n"
+        created:
+          type: object
+          description: The time this user was created
+        xp:
+          type: object
+          description: The users current xp amount
+        level:
+          type: integer
+          description: The users current level
+        user_title:
+          type: string
+          description: The users current title
+        has_custom_title:
+          type: boolean
+          description: Whether or not the user has a custom title
+      required:
+      - tag_line
+      - users_id
+      - name
+      - preview_image
+      - score_points
+      - bio
+      - banner_image
+      - donate_url
+      - profile_type
+      - created
+      - xp
+      - level
+      - user_title
+      - has_custom_title
+      description: represents a user
+  securitySchemes:
+    userAuth:
+      type: http
+      scheme: bearer

@@ -1,0 +1,318 @@
+openapi: 3.0.0
+info:
+  title: SideQuest Apps API
+  description: API for interacting with SideQuest
+  contact: {}
+  license:
+    name: Private
+  version: 0.2.0
+servers:
+- url: https://api.sidequestvr.com/
+tags:
+- name: Apps
+paths:
+  /v2/apps:
+    summary: Apps
+    get:
+      summary: Get Apps
+      description: Retrieves a listing of apps
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/AppModelBase'
+        '400':
+          description: The data provided to the call was incorrect or incomplete.
+          content:
+            text/plain:
+              schema:
+                type: string
+        '403':
+          description: Access denied- the authorization token provided does not have access to the resource.
+          content:
+            text/plain:
+              schema:
+                type: string
+        '404':
+          description: No resource was found at the target path or the authorization token provided does not have access to know that it exists.
+          content:
+            text/plain:
+              schema:
+                type: string
+      tags:
+      - Apps
+      parameters:
+      - name: app_categories
+        description: 'A comma-separated list of app categories
+
+          '
+        schema:
+          type: string
+        in: query
+        required: false
+      - name: hide_sidelined
+        description: 'only shows apps that have not been sidelined
+
+          '
+        schema:
+          type: string
+        in: query
+        required: false
+      - name: app_license
+        description: "A comma-separated list of license types\n * FREE - Free app\n * PAID - Paid app\n * OPENSOURCE - Open source app\n * DEMO - Demo app\n"
+        schema:
+          type: string
+          enum:
+          - FREE
+          - PAID
+          - OPENSOURCE
+          - DEMO
+          description: "\n * FREE - Free app\n * PAID - Paid app\n * OPENSOURCE - Open source app\n * DEMO - Demo app\n"
+        in: query
+        required: false
+      - name: app_platform
+        description: "A comma-separated list of supported app platforms\n * 1 - Oculus Quest\n * 2 - Oculus Go\n * 3 - WebXR\n * 4 - Oculus Link\n * 5 - Other\n * 6 - Pico\n * 7 - Magic Leap\n"
+        schema:
+          type: string
+          enum:
+          - '1'
+          - '2'
+          - '3'
+          - '4'
+          - '5'
+          - '6'
+          - '7'
+          description: "\n * 1 - Oculus Quest\n * 2 - Oculus Go\n * 3 - WebXR\n * 4 - Oculus Link\n * 5 - Other\n * 6 - Pico\n * 7 - Magic Leap\n"
+        in: query
+        required: false
+      - name: app_comfort_level
+        description: "A comma-separated list of comfort levels\n * 0 - Comfortable\n * 1 - Moderate\n * 2 - Average\n * 3 - Exciting\n * 4 - Intense\n"
+        schema:
+          type: string
+          enum:
+          - '0'
+          - '1'
+          - '2'
+          - '3'
+          - '4'
+          description: "\n * 0 - Comfortable\n * 1 - Moderate\n * 2 - Average\n * 3 - Exciting\n * 4 - Intense\n"
+        in: query
+        required: false
+      - name: app_download_method
+        description: "A comma-separated list of download methods to query on\n * 1 - AppLab\n * 2 - Oculus Store\n * 3 - SideQuest, Itch, or other (requires sideloading)\n"
+        schema:
+          type: string
+          enum:
+          - '1'
+          - '2'
+          - '3'
+          description: "\n * 1 - AppLab\n * 2 - Oculus Store\n * 3 - SideQuest, Itch, or other (requires sideloading)\n"
+        in: query
+        required: false
+      - name: app_ids
+        description: 'A comma-separated list of app ids
+
+          '
+        schema:
+          type: string
+        in: query
+        required: false
+      - name: skip
+        description: Skips a number of objects from the start of the list.  Used for paging.
+        in: query
+        required: false
+        schema:
+          type: integer
+      - name: limit
+        description: Limits the number of objects returned.
+        in: query
+        required: false
+        schema:
+          type: integer
+      - name: staff_picks
+        description: Filters the returned rows by whether the app is selected as a staff pick.
+        in: query
+        required: false
+        schema:
+          type: boolean
+      - name: supports_quest
+        description: Filters the returned rows by whether the app supports the Quest/Quest2.
+        in: query
+        required: false
+        schema:
+          type: object
+      - name: supports_pico
+        description: Filters the returned rows by whether the app supports the Pico.
+        in: query
+        required: false
+        schema:
+          type: boolean
+      - name: supports_magic_leap
+        description: Filters the returned rows by whether the app supports the Magic Leap.
+        in: query
+        required: false
+        schema:
+          type: boolean
+      - name: is_webxr
+        description: Filters the returned rows by whether the app supports WebXR.
+        in: query
+        required: false
+        schema:
+          type: object
+      - name: supports_link
+        description: Filters the returned rows by whether the app supports Oculus Link.
+        in: query
+        required: false
+        schema:
+          type: object
+      - name: has_oculus_url
+        description: Filters the returned rows by whether the app has an Oculus URL and is an App Lab or Oculus Store app.
+        in: query
+        required: false
+        schema:
+          type: boolean
+      - name: early_access
+        description: Filters the returned rows by whether the app is marked as early access.
+        in: query
+        required: false
+        schema:
+          type: boolean
+      - name: updated_since
+        description: Filters the returned rows by those that have been updated after the provided unix UTC timestamp IN MILLISECONDS.
+        in: query
+        required: false
+        schema:
+          type: integer
+      - name: created_since
+        description: Filters the returned rows by those that have created after the provided unix UTC timestamp IN MILLISECONDS.
+        in: query
+        required: false
+        schema:
+          type: integer
+      - name: search
+        description: Filters the returned rows by a search phrase to quickly find apps by name and search tags.
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: full_search
+        description: Filters the returned rows by a search phrase to search the name, search tags, summary and description for an app.
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: sortOn
+        description: "Sorts the returned object by one or more parameters.  Multiple values can be separated by a comma for sorting on multiple fields.\n * name - The app name\n * created - The app created date\n * updated - The last date the app was updated\n * sort_rating - A rating for apps\n * hot_sort_rating - A 'hot' rating for apps\n * early_access - Whether the app is early access or not\n * downloads - How many downloads the app has\n * search_rank - The search rank when 'search' is specified as a filter\n * full_search_rank - the search rank when 'full_search' is specified as a filter\n"
+        schema:
+          type: string
+        in: query
+        required: false
+      - name: descending
+        description: Orders the results in descending order based on the sortOn specified.  If there are multiple sortOns specified, multiple values can be separated by a comma for each corresponding sortOn.
+        schema:
+          type: string
+        in: query
+        required: false
+components:
+  schemas:
+    AppModelBase:
+      description: An app listing base
+      properties:
+        apps_id:
+          type: integer
+          description: The unique identifier of the app listing.
+        name:
+          type: object
+          description: The name of the app.
+        summary:
+          type: object
+          description: A short summary of the app.
+        description:
+          type: object
+          description: The detailed description of the app.
+        image_url:
+          type: object
+          description: An absolute URL to the logo image of the app.
+        video_url:
+          type: object
+          description: An absolute URL to a video associated with the app.
+        website:
+          type: object
+          description: The URL of the app's web site.
+        supports_go:
+          type: object
+          description: True if the app supports the Oculus Go.
+        supports_quest:
+          type: object
+          description: True if the app supports the Oculus Quest/Quest2.
+        supports_pico:
+          type: boolean
+          description: True if the app supports the Pico.
+        supports_magic_leap:
+          type: boolean
+          description: True if the app supports the Magic Leap
+        supports_link:
+          type: object
+          description: True if the app supports Oculus Link.
+        supports_other:
+          type: object
+          description: True if the app supports other VR platforms.
+        is_webxr:
+          type: object
+          description: True if the app supports WebXR.
+        created:
+          type: object
+          description: The timestamp of when the app listing was created.
+        updated:
+          type: object
+          description: The timestamp of when the app listing was last updated.
+        license:
+          type: object
+          enum:
+          - FREE
+          - PAID
+          - OPENSOURCE
+          - DEMO
+          description: "The license type of the app.\n * FREE - Free app\n * PAID - Paid app\n * OPENSOURCE - Open source app\n * DEMO - Demo app\n"
+        oculus_url:
+          type: object
+          description: The Oculus URL of the App Lab or Oculus Store app.
+        external_listing_url:
+          type: object
+          description: The link to an external listing URL for sites like itch.io, App Lab, etc.
+        oculus_sync_enabled:
+          type: boolean
+          description: True if Oculus listing syncing is enabled
+        last_oculus_sync:
+          type: object
+          description: The last timestamp when the Oculus listing was synced, or null if it never has been
+      required:
+      - apps_id
+      - name
+      - summary
+      - description
+      - image_url
+      - video_url
+      - website
+      - supports_go
+      - supports_quest
+      - supports_pico
+      - supports_magic_leap
+      - supports_link
+      - supports_other
+      - is_webxr
+      - created
+      - updated
+      - license
+      - oculus_url
+      - external_listing_url
+      - oculus_sync_enabled
+      - last_oculus_sync
+  securitySchemes:
+    userAuth:
+      type: http
+      scheme: bearer

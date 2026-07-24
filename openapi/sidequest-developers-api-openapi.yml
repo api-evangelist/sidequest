@@ -1,0 +1,32 @@
+openapi: 3.0.0
+info:
+  title: SideQuest Apps Developers API
+  description: API for interacting with SideQuest
+  contact: {}
+  license:
+    name: Private
+  version: 0.2.0
+servers:
+- url: https://api.sidequestvr.com/
+tags:
+- name: Developers
+paths:
+  /v2/developers:
+    summary: Developers
+    get:
+      summary: Developers
+      description: Developers developers developers developers
+      responses:
+        '302':
+          description: Developers
+          content:
+            text/plain:
+              schema:
+                type: string
+      tags:
+      - Developers
+components:
+  securitySchemes:
+    userAuth:
+      type: http
+      scheme: bearer

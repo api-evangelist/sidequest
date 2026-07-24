@@ -1,0 +1,152 @@
+openapi: 3.0.0
+info:
+  title: SideQuest Apps UsersApps API
+  description: API for interacting with SideQuest
+  contact: {}
+  license:
+    name: Private
+  version: 0.2.0
+servers:
+- url: https://api.sidequestvr.com/
+tags:
+- name: UsersApps
+paths:
+  /v2/users/{route_users_id}/apps/{apps_id}/achievements:
+    summary: UsersApps
+    get:
+      summary: Get User App Achievements
+      description: 'Gets a listing of achievements a user has unlocked for an app
+
+
+        ```
+
+        Required Scopes:
+
+        -user.app_achievements.read
+
+        ```'
+      responses:
+        '200':
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Achievement'
+        '400':
+          description: The data provided to the call was incorrect or incomplete.
+          content:
+            text/plain:
+              schema:
+                type: string
+        '403':
+          description: Access denied- the authorization token provided does not have access to the resource.
+          content:
+            text/plain:
+              schema:
+                type: string
+        '404':
+          description: No resource was found at the target path or the authorization token provided does not have access to know that it exists.
+          content:
+            text/plain:
+              schema:
+                type: string
+      tags:
+      - UsersApps
+      security:
+      - userAuth:
+        - user.app_achievements.read
+      parameters:
+      - name: route_users_id
+        description: 'The unique user ID or "me"
+
+          '
+        schema:
+          type: string
+        in: path
+        required: true
+      - name: apps_id
+        description: 'The unique app ID or "me"
+
+          '
+        schema:
+          type: string
+        in: path
+        required: true
+      - name: skip
+        description: Skips a number of objects from the start of the list.  Used for paging.
+        in: query
+        required: false
+        schema:
+          type: integer
+      - name: limit
+        description: Limits the number of objects returned.
+        in: query
+        required: false
+        schema:
+          type: integer
+      - name: name
+        description: Filters the returned rows by the name of the achievement.  The % (url encoded as %25) can be included in the string as a wildcard.
+        in: query
+        required: false
+        schema:
+          type: string
+      - name: sortOn
+        description: "Sorts the returned object by one or more parameters.  Multiple values can be separated by a comma for sorting on multiple fields.\n * created_at - The timestamp when the achievement was created\n * name - The name of the achievement\n * status - The status of the achievement\n"
+        schema:
+          type: string
+        in: query
+        required: false
+      - name: descending
+        description: Orders the results in descending order based on the sortOn specified.  If there are multiple sortOns specified, multiple values can be separated by a comma for each corresponding sortOn.
+        schema:
+          type: string
+        in: query
+        required: false
+components:
+  schemas:
+    Achievement:
+      description: represents an achievement
+      properties:
+        achievement_identifier:
+          type: string
+          description: The string ID of the achievement
+        name:
+          type: string
+          description: The name of the achievement
+        description:
+          type: object
+          description: The description of the achievement
+        image:
+          type: string
+          description: An image url associated with the achievement
+        icon:
+          type: object
+          description: An icon url associated with the achievement
+        status:
+          type: string
+          enum:
+          - hidden
+          - active
+          - deleted
+          description: "The status of the achievement\n * hidden - Achievement is hidden, but can still be earned\n * active - Achievement is active\n * deleted - Achievement has been deleted\n"
+        created_at:
+          type: string
+          format: date-time
+          example: '1970-04-20 07:10:00+00'
+          description: The timestamp when the achievement was created
+        unlocked_at:
+          type: string
+          format: date-time
+          example: '1970-04-20 07:10:00+00'
+          description: The timestamp when the achievement was unlocked
+      required:
+      - achievement_identifier
+      - name
+      - image
+      - icon
+      - status
+      - created_at
+  securitySchemes:
+    userAuth:
+      type: http
+      scheme: bearer
