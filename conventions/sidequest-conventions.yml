@@ -1,0 +1,66 @@
+generated: '2026-07-21'
+method: derived
+source: >-
+  Derived from openapi/sidequest-openapi.json (security schemes, OAuth endpoints,
+  pagination + sort parameters, error media types) and live probes of
+  api.sidequestvr.com. Cross-cutting request/response semantics that OpenAPI does
+  not fully express. No hosted developer guide was found to enrich these
+  (sidequestvr.com is a single-page app; developer.sidequestvr.com does not resolve).
+api: SideQuest Public API
+base_url: https://api.sidequestvr.com
+api_style: REST over HTTPS, JSON responses
+
+authentication:
+  scheme: HTTP Bearer (OAuth 2.0 access token in the Authorization header)
+  security_scheme: userAuth (type=http, scheme=bearer)
+  token_endpoint: https://api.sidequestvr.com/v2/oauth/token
+  short_code_login: >-
+    Device-style login — POST /v2/oauth/getshortcode returns a short code +
+    verification_url; the client polls POST /v2/oauth/checkshortcode (with the
+    returned device_id) until the user approves, then receives access + refresh
+    tokens. Refresh via POST /v2/oauth/token (grant_type=refresh_token).
+  detail: authentication/sidequest-authentication.yml
+  scopes: scopes/sidequest-scopes.yml
+  public_reads: >-
+    GET /v2/apps and GET /v2/users/{id}/view-profile require no token; scoped
+    reads (full user profile, achievements) require a bearer token with the
+    matching scope.
+
+idempotency:
+  supported: false
+  notes: >-
+    No Idempotency-Key header or idempotency semantics are documented. The
+    public surface is read-heavy (GET) plus OAuth token exchange; there are no
+    resource-creating POSTs where idempotency keys would apply.
+
+pagination:
+  style: offset
+  request_params:
+    skip: Number of results to skip (offset).
+    limit: Maximum number of results to return.
+  applies_to: ["GET /v2/apps", "GET /v2/users/{route_users_id}/apps/{apps_id}/achievements"]
+  response_fields: Bare JSON array of results (no envelope/has_more wrapper observed).
+
+sorting_filtering:
+  sort_params:
+    sortOn: Field name to sort on.
+    descending: Boolean — reverse sort order.
+  filtering: >-
+    GET /v2/apps exposes rich filters — app_categories, app_platform,
+    app_comfort_level, app_license, app_download_method, staff_picks,
+    supports_quest / supports_pico / supports_magic_leap / supports_link,
+    is_webxr, early_access, has_oculus_url, app_ids, plus search / full_search
+    free-text and updated_since / created_since incremental filters.
+
+versioning:
+  style: path
+  detail: lifecycle/sidequest-lifecycle.yml
+
+error_handling:
+  envelope: text/plain human-readable message (NOT RFC 9457 problem+json)
+  statuses: [400, 403, 404]
+  detail: errors/sidequest-problem-types.yml
+
+rate_limiting:
+  documented: false
+  notes: No rate-limit headers or policy documented; a reCAPTCHA challenge guards some client flows.

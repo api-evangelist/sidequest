@@ -1,0 +1,22 @@
+{
+  "provider": "sidequest",
+  "sources": [
+    "sidequest-apps-api-openapi.yml",
+    "sidequest-developers-api-openapi.yml",
+    "sidequest-oauth2-api-openapi.yml",
+    "sidequest-users-api-openapi.yml",
+    "sidequest-usersapps-api-openapi.yml"
+  ],
+  "outputs": [
+    "sidequest-apps-api-openapi.yml",
+    "sidequest-developers-api-openapi.yml",
+    "sidequest-oauth2-api-openapi.yml",
+    "sidequest-users-api-openapi.yml",
+    "sidequest-usersapps-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}

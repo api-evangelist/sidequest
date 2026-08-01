@@ -1,7 +1,25 @@
 aid: sidequest
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/sidequest.png
 name: SideQuest
-description: 'SideQuest is a company surfaced as a portfolio company of gv and added to the API Evangelist
-  network as a stub for enrichment. Sector: consumer. This profile is a lead awaiting the enrichment pipeline.'
+description: >-
+  SideQuest is a VR content-discovery platform and independent app store for Meta
+  Quest, PCVR, Pico, Magic Leap and WebXR headsets — the home of sideload-only,
+  early-access and indie VR apps and games, plus tools to help users get more from
+  their VR headset. SideQuest operates a public REST API (api.sidequestvr.com) for
+  browsing the app catalog and reading user profiles and achievements, secured with
+  OAuth 2.0 bearer tokens and a device-style short-code login. Backed by GV.
 url: https://raw.githubusercontent.com/api-evangelist/sidequest/refs/heads/main/apis.yml
 x-type: company
 x-source: vc-portfolio
@@ -11,16 +29,119 @@ x-tier: stub
 x-tier-reason: portfolio-lead
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-21'
 tags:
 - Company
 - Consumer
-apis: []
+- Virtual Reality
+- VR
+- XR
+- Gaming
+- App Store
+- Developers
+apis:
+- aid: sidequest:sidequest-apps-api
+  name: SideQuest Apps API
+  description: The Apps API from SideQuest — 1 operation(s) for apps.
+  humanURL: https://api.sidequestvr.com/docs
+  baseURL: https://api.sidequestvr.com
+  tags:
+  - Apps
+  properties:
+  - type: OpenAPI
+    url: openapi/sidequest-apps-api-openapi.yml
+  - type: APIReference
+    url: https://api.sidequestvr.com/docs
+- aid: sidequest:sidequest-developers-api
+  name: SideQuest Developers API
+  description: The Developers API from SideQuest — 1 operation(s) for developers.
+  humanURL: https://api.sidequestvr.com/docs
+  baseURL: https://api.sidequestvr.com
+  tags:
+  - Developers
+  properties:
+  - type: OpenAPI
+    url: openapi/sidequest-developers-api-openapi.yml
+  - type: APIReference
+    url: https://api.sidequestvr.com/docs
+- aid: sidequest:sidequest-oauth2-api
+  name: SideQuest OAuth2 API
+  description: The OAuth2 API from SideQuest — 3 operation(s) for oauth2.
+  humanURL: https://api.sidequestvr.com/docs
+  baseURL: https://api.sidequestvr.com
+  tags:
+  - OAuth2
+  properties:
+  - type: OpenAPI
+    url: openapi/sidequest-oauth2-api-openapi.yml
+  - type: APIReference
+    url: https://api.sidequestvr.com/docs
+- aid: sidequest:sidequest-users-api
+  name: SideQuest Users API
+  description: The Users API from SideQuest — 2 operation(s) for users.
+  humanURL: https://api.sidequestvr.com/docs
+  baseURL: https://api.sidequestvr.com
+  tags:
+  - Users
+  properties:
+  - type: OpenAPI
+    url: openapi/sidequest-users-api-openapi.yml
+  - type: APIReference
+    url: https://api.sidequestvr.com/docs
+- aid: sidequest:sidequest-usersapps-api
+  name: SideQuest UsersApps API
+  description: The UsersApps API from SideQuest — 1 operation(s) for usersapps.
+  humanURL: https://api.sidequestvr.com/docs
+  baseURL: https://api.sidequestvr.com
+  tags:
+  - UsersApps
+  properties:
+  - type: OpenAPI
+    url: openapi/sidequest-usersapps-api-openapi.yml
+  - type: APIReference
+    url: https://api.sidequestvr.com/docs
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: OpenAPI
+  url: openapi/sidequest-openapi.json
+- type: Authentication
+  url: authentication/sidequest-authentication.yml
+- type: OAuthScopes
+  url: scopes/sidequest-scopes.yml
+- type: Conventions
+  url: conventions/sidequest-conventions.yml
+- type: ErrorCatalog
+  url: errors/sidequest-problem-types.yml
+- type: Lifecycle
+  url: lifecycle/sidequest-lifecycle.yml
+- type: Conformance
+  url: conformance/sidequest-conformance.yml
+- type: DataModel
+  url: data-model/sidequest-data-model.yml
+- type: Overlay
+  url: overlays/sidequest-openapi-overlay.yaml
+- type: MCPServer
+  url: mcp/sidequest-mcp.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: LLMsTxt
+  url: llms/sidequest-llms.txt
+- type: Packages
+  url: packages/sidequest-packages.yml
+- type: DomainSecurity
+  url: security/sidequest-domain-security.yml
+- type: Documentation
+  url: https://api.sidequestvr.com/docs
+- type: DeveloperPortal
+  url: https://sidequestvr.com/developers
 - type: Website
   url: sidequestvr.com
+x-enrichment:
+  date: '2026-07-21'
+  status: enriched
+  artifacts_added: 15
+  pass: local-v1

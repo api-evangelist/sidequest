@@ -1,0 +1,51 @@
+generated: '2026-07-21'
+method: derived
+source: >-
+  Derived from openapi/sidequest-openapi.json — the scopes enum on
+  components.schemas.GetShortCodeRequest.scopes (the full set a client may
+  request) and the per-operation security requirements on the SideQuest Public
+  API (userAuth). No separate hosted scopes/permissions reference page was found
+  (sidequestvr.com is a single-page app; developer.sidequestvr.com does not
+  resolve), so descriptions are derived from the scope identifiers themselves.
+api: SideQuest Public API
+token_endpoint: https://api.sidequestvr.com/v2/oauth/token
+authorization_flow: >-
+  Device-style short-code login: POST /v2/oauth/getshortcode (client_id + scopes)
+  returns a short code + verification_url the user approves; the client polls
+  POST /v2/oauth/checkshortcode to redeem it for an access_token + refresh_token.
+  Refresh via POST /v2/oauth/token (grant_type=refresh_token). Access tokens are
+  presented as HTTP bearer tokens (userAuth).
+scopes:
+  - name: user.basic_profile.read
+    description: Read a user's basic public profile (name, avatar preview, level, bio).
+    used_by: ["GET /v2/users/{route_users_id}"]
+  - name: user.app_achievements.read
+    description: Read the achievements a user has unlocked for an app.
+    used_by: ["GET /v2/users/{route_users_id}/apps/{apps_id}/achievements"]
+  - name: user.app_achievements.write
+    description: Grant or update a user's app achievements.
+  - name: user.avatars.read
+    description: Read a user's avatar(s).
+  - name: user.avatars.write
+    description: Create or update a user's avatar(s).
+  - name: user.friends.read
+    description: Read a user's friends list.
+  - name: user.friends.write
+    description: Modify a user's friends (add/remove).
+  - name: user.rich_presence.write
+    description: Publish rich-presence / activity status for a user.
+  - name: user.communities.read
+    description: Read the communities a user belongs to.
+  - name: user.communities.write
+    description: Join, leave, or modify a user's communities.
+  - name: user.messages.read
+    description: Read a user's messages.
+  - name: user.messages.write
+    description: Send messages on behalf of a user.
+  - name: user.messagehistory.read
+    description: Read a user's message history.
+notes: >-
+  Only user.basic_profile.read and user.app_achievements.read gate operations in
+  the currently published spec (0.2.0); the remaining scopes are requestable per
+  GetShortCodeRequest and correspond to product surfaces (avatars, friends,
+  communities, messaging, rich presence) not yet exposed as public REST paths.

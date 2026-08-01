@@ -1,0 +1,39 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enrichment overlay for the SideQuest Public API
+  version: 1.0.0
+  x-generated: '2026-07-21'
+  x-method: generated
+  x-source: >-
+    Non-mutating OpenAPI Overlay 1.0.0 that layers API Evangelist enrichment onto
+    openapi/sidequest-openapi.json. It never edits the original spec. Actions add
+    external documentation, tag descriptions, and cross-links to the derived
+    conventions/errors/scopes/lifecycle artifacts.
+extends: ../openapi/sidequest-openapi.json
+actions:
+  - target: $.info
+    update:
+      x-api-evangelist:
+        conventions: conventions/sidequest-conventions.yml
+        errors: errors/sidequest-problem-types.yml
+        scopes: scopes/sidequest-scopes.yml
+        authentication: authentication/sidequest-authentication.yml
+        lifecycle: lifecycle/sidequest-lifecycle.yml
+        data_model: data-model/sidequest-data-model.yml
+  - target: $
+    update:
+      externalDocs:
+        description: SideQuest Public API interactive reference (Swagger UI)
+        url: https://api.sidequestvr.com/docs
+  - target: $.paths['/v2/apps'].get
+    update:
+      x-pagination: {style: offset, params: [skip, limit]}
+      x-notes: >-
+        Public (no auth). Rich filtering across category, platform support flags,
+        comfort level, WebXR, early access, plus search / full_search free-text
+        and updated_since / created_since incremental sync.
+  - target: $.paths['/v2/oauth/getshortcode'].post
+    update:
+      x-notes: >-
+        Device-style short-code login entry point — pair with
+        /v2/oauth/checkshortcode (poll) and /v2/oauth/token (refresh).

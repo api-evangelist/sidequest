@@ -1,0 +1,12 @@
+generated: '2026-07-21'
+method: derived
+source: openapi/sidequest-openapi.json
+summary:
+  types:
+  - http
+schemes:
+- name: userAuth
+  type: http
+  scheme: bearer
+  sources:
+  - openapi/sidequest-openapi.json

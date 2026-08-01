@@ -1,0 +1,29 @@
+generated: '2026-07-21'
+method: derived
+source: >-
+  Derived from openapi/sidequest-openapi.json (info.version 0.2.0, /v2/ path
+  prefix, license "Private") and live probes. No published versioning policy,
+  deprecation policy, SLA, or dedicated status page was found (status.sidequestvr.com
+  does not resolve; sidequestvr.com is a single-page app). Absence recorded as-is.
+api: SideQuest Public API
+versioning:
+  scheme: path
+  mechanism: Major version in the URL path (/v2/...).
+  current_spec_version: 0.2.0
+  current_path_version: v2
+  docs: https://api.sidequestvr.com/docs
+  notes: >-
+    The API is described as the "SideQuest Public API" and versioned in the path
+    (all published operations live under /v2). info.version in the spec is 0.2.0.
+deprecation:
+  policy_url: null
+  sunset_header: false
+  deprecation_header: false
+  notes: No RFC 8594 Sunset/Deprecation headers or public deprecation policy located.
+sla:
+  url: null
+  public_uptime_target: null
+  notes: No public SLA published.
+status_page: null
+health_endpoint: https://api.sidequestvr.com/health
+deprecated_operations: []

@@ -1,0 +1,42 @@
+generated: '2026-07-21'
+method: derived
+source: >-
+  Derived from openapi/sidequest-openapi.json (securitySchemes, OAuth token/
+  short-code endpoints, error response media types, and pagination parameters).
+  No hosted compliance/standards documentation was found (sidequestvr.com is a
+  single-page app; no trust center or security.txt was located).
+api: SideQuest Public API
+standards:
+  - id: oauth2
+    conforms: true
+    evidence: >-
+      Publishes an OAuth 2.0 token surface — POST /v2/oauth/token
+      (grant_type=refresh_token) plus a device-style short-code login
+      (getshortcode / checkshortcode) that issues scoped access + refresh tokens.
+  - id: bearer-auth
+    conforms: true
+    evidence: securitySchemes.userAuth is type=http scheme=bearer; access tokens are sent in the Authorization header.
+  - id: oidc
+    conforms: false
+    evidence: No /.well-known/openid-configuration on the API host; no OIDC discovery or id_token.
+  - id: rfc9457
+    conforms: false
+    evidence: 4xx responses are declared as text/plain, not application/problem+json.
+  - id: pagination
+    conforms: true
+    evidence: List endpoints (GET /v2/apps, achievements) accept skip and limit offset-pagination parameters.
+  - id: idempotency
+    conforms: false
+    evidence: No Idempotency-Key header or idempotency semantics documented; only GET reads and OAuth POSTs are exposed.
+  - id: json-api
+    conforms: false
+    evidence: Responses are plain JSON objects/arrays, not JSON:API structured documents.
+  - id: scim
+    conforms: false
+    evidence: No SCIM user-provisioning surface.
+  - id: fhir
+    conforms: false
+    evidence: Not a healthcare API.
+  - id: fapi
+    conforms: false
+    evidence: No FAPI security profile claimed; consumer VR platform API.

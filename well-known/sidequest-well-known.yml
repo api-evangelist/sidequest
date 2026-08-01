@@ -1,0 +1,20 @@
+generated: '2026-07-21'
+method: probed
+source: >-
+  Live HTTP probes of the SideQuest hosts. sidequestvr.com is a single-page app
+  that returns HTTP 200 with the app shell for every path (soft-404), so none of
+  its /.well-known responses are genuine documents. The API host
+  api.sidequestvr.com returns 403 for /.well-known paths. No real well-known
+  documents were found. Absence recorded as valid data.
+hosts:
+  - host: sidequestvr.com
+    probes:
+      - {path: /.well-known/security.txt, status: 200, real: false, note: SPA shell (soft-404), text/html}
+      - {path: /.well-known/openid-configuration, status: 200, real: false, note: SPA shell (soft-404), text/html}
+      - {path: /.well-known/oauth-authorization-server, status: 200, real: false, note: SPA shell (soft-404), text/html}
+      - {path: /.well-known/api-catalog, status: 200, real: false, note: SPA shell (soft-404), text/html}
+      - {path: /.well-known/ai-plugin.json, status: 200, real: false, note: SPA shell (soft-404), text/html}
+  - host: api.sidequestvr.com
+    probes:
+      - {path: /.well-known/security.txt, status: 403, real: false, note: Forbidden}
+found: []

@@ -1,0 +1,23 @@
+generated: '2026-07-21'
+method: searched
+source: >-
+  npm registry search (scope:sidequestvr and text search) plus PyPI/other
+  registries. No first-party client SDK for the SideQuest Public API was found on
+  any package registry. The one first-party npm package under the @sidequestvr
+  scope is the Bonto deploy CLI (a separate product), recorded below for
+  completeness; it is NOT a client library for the SideQuest Public API.
+api: SideQuest Public API
+sdks: []
+first_party_other:
+  - registry: npm
+    name: "@sidequestvr/bonto"
+    version: 1.0.6
+    official: true
+    homepage: https://bonto.dev
+    description: "Bonto CLI — deploy and manage Node.js apps from your terminal (SideQuest's Bonto product; not a SideQuest API SDK)."
+    is_api_client: false
+notes: >-
+  The SideQuest Public API ships an interactive Swagger UI at
+  https://api.sidequestvr.com/docs but no published, first-party HTTP client SDK.
+  (The unscoped npm package "sidequest" is an unrelated third-party Ruby/Node
+  background-jobs library, not from this company.)

@@ -1,0 +1,43 @@
+generated: '2026-07-21'
+method: derived
+format: text-plain
+source: >-
+  Derived from the 4xx response definitions across openapi/sidequest-openapi.json.
+  The SideQuest Public API does NOT use RFC 9457 application/problem+json: every
+  error response is declared with content type text/plain and a human-readable
+  description. This catalog captures the documented status codes and their
+  meanings. No hosted error-reference page was found to enrich titles/remediation
+  (sidequestvr.com is a single-page app; developer.sidequestvr.com does not
+  resolve).
+api: SideQuest Public API
+envelope:
+  media_type: text/plain
+  shape: A plain-text message describing the error (no structured JSON error body).
+  rfc9457: false
+problems:
+  - status: 400
+    title: Bad Request
+    meaning: The data provided to the call was incorrect or incomplete.
+    remediation: Validate query/body parameters against the OpenAPI schema before retrying.
+    seen_on: ["GET /v2/apps", "GET /v2/users/{route_users_id}", "GET /v2/users/{route_users_id}/view-profile", "GET /v2/users/{route_users_id}/apps/{apps_id}/achievements", "POST /v2/oauth/token", "POST /v2/oauth/getshortcode", "POST /v2/oauth/checkshortcode"]
+    notes: >-
+      On POST /v2/oauth/token a 400 most likely indicates an invalid refresh
+      token; on POST /v2/oauth/checkshortcode a 400 indicates the short code is
+      invalid or has expired.
+  - status: 403
+    title: Forbidden
+    meaning: Access denied — the authorization token provided does not have access to the resource.
+    remediation: Ensure the bearer token carries the required scope (e.g. user.basic_profile.read) and belongs to a user with access.
+    seen_on: ["GET /v2/apps", "GET /v2/users/{route_users_id}", "GET /v2/users/{route_users_id}/view-profile", "GET /v2/users/{route_users_id}/apps/{apps_id}/achievements"]
+  - status: 404
+    title: Not Found
+    meaning: >-
+      No resource was found at the target path, or the authorization token
+      provided does not have access to know that it exists.
+    remediation: Verify the resource id; a missing scope can mask an existing resource as 404.
+    seen_on: ["GET /v2/apps", "GET /v2/users/{route_users_id}", "GET /v2/users/{route_users_id}/view-profile", "GET /v2/users/{route_users_id}/apps/{apps_id}/achievements"]
+non_error_statuses:
+  - status: 204
+    meaning: (checkshortcode) The short-code request has not yet been completed by the user — keep polling at the returned interval.
+  - status: 302
+    meaning: (GET /v2/developers) Redirect.

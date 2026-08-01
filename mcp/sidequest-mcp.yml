@@ -1,0 +1,35 @@
+generated: '2026-07-21'
+method: derived
+status: candidate
+source: >-
+  No official hosted/remote MCP server was found for SideQuest (no mcp.sidequestvr.com,
+  no registry entry, no docs reference). This is a CANDIDATE tool list derived
+  from the operations in openapi/sidequest-openapi.json to illustrate how the
+  SideQuest Public API could be exposed to agents. Not an endorsed or published server.
+api: SideQuest Public API
+server:
+  name: sidequest
+  transport: stdio
+  status: candidate
+  auth: bearer (OAuth 2.0 access token; user.* scopes)
+tools:
+  - name: search_apps
+    description: List/search VR apps with filters (category, platform, comfort, staff picks, WebXR, early access, free text).
+    operation: GET /v2/apps
+    auth: none
+  - name: get_user_profile
+    description: Retrieve a user's profile (scoped token returns full profile).
+    operation: GET /v2/users/{route_users_id}
+    auth: user.basic_profile.read
+  - name: view_user_profile
+    description: Retrieve a user's public profile.
+    operation: GET /v2/users/{route_users_id}/view-profile
+    auth: none
+  - name: get_user_app_achievements
+    description: List the achievements a user has unlocked for an app.
+    operation: GET /v2/users/{route_users_id}/apps/{apps_id}/achievements
+    auth: user.app_achievements.read
+  - name: list_developers
+    description: List SideQuest developers.
+    operation: GET /v2/developers
+    auth: none

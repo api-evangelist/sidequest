@@ -1,0 +1,40 @@
+generated: '2026-07-21'
+method: derived
+source: >-
+  Derived from the object schemas and id-reference fields in
+  openapi/sidequest-openapi.json (App/User/Achievement models) and confirmed
+  against a live GET /v2/apps response. Captures the core entity-relationship
+  graph behind SideQuest's VR content-discovery domain.
+api: SideQuest Public API
+docs: https://api.sidequestvr.com/docs
+notation: >-
+  relationships use has_one / has_many / belongs_to with the foreign-key field
+  name; direction is from the entity that owns the reference. Ids are numeric
+  surrogate keys (no string id-prefixes observed).
+entities:
+  - name: App
+    key: apps_id
+    domain: content
+    description: A VR app/game listing (name, summary, platform support flags, media, downloads, ratings, oculus_url).
+  - name: User
+    key: users_id
+    domain: identity
+    description: A SideQuest user profile (name, avatar preview, bio, level, xp, score_points); public vs scoped views.
+  - name: Developer
+    key: null
+    domain: identity
+    description: An app developer/publisher (GET /v2/developers listing).
+  - name: Achievement
+    key: achievement_identifier
+    domain: content
+    description: An unlockable achievement for an app; per-user unlock state (status, unlocked_at).
+  - name: AppCategory
+    key: app_categories_id
+    domain: content
+    description: A category an app belongs to (referenced by App.app_categories_id and the app_categories filter).
+relationships:
+  - {from: App, to: User, kind: belongs_to, via: users_id, note: publishing user/developer of the app}
+  - {from: App, to: AppCategory, kind: belongs_to, via: app_categories_id}
+  - {from: App, to: Achievement, kind: has_many, via: apps_id}
+  - {from: User, to: Achievement, kind: has_many, via: "users_id + apps_id (unlocked achievements per app)"}
+  - {from: Achievement, to: App, kind: belongs_to, via: apps_id}

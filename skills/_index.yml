@@ -1,0 +1,18 @@
+generated: '2026-07-21'
+method: generated
+source: >-
+  Packaged Agent Skills generated from openapi/sidequest-openapi.json. The spec
+  declares no operationIds, so each step is grounded in a method+path verified
+  verbatim in the OpenAPI document. Cross-cutting rules cite
+  ../conventions/sidequest-conventions.yml, ../errors/sidequest-problem-types.yml
+  and ../scopes/sidequest-scopes.yml. No provider-published skills/AGENTS.md was found.
+api: SideQuest Public API
+skills:
+  - file: sidequest-search-vr-apps.md
+    name: Search the SideQuest VR app catalog
+    api: openapi/sidequest-openapi.json
+    operations: ["GET /v2/apps"]
+  - file: sidequest-login-and-read-achievements.md
+    name: Log a user in and read their app achievements
+    api: openapi/sidequest-openapi.json
+    operations: ["POST /v2/oauth/getshortcode", "POST /v2/oauth/checkshortcode", "POST /v2/oauth/token", "GET /v2/users/{route_users_id}/apps/{apps_id}/achievements"]
