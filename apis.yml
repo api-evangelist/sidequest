@@ -107,7 +107,7 @@ maintainers:
   email: info@apis.io
 common:
 - type: OpenAPI
-  url: openapi/sidequest-openapi.json
+  url: openapi/_original/sidequest-openapi.json
 - type: Authentication
   url: authentication/sidequest-authentication.yml
 - type: OAuthScopes
@@ -138,8 +138,6 @@ common:
   url: https://api.sidequestvr.com/docs
 - type: DeveloperPortal
   url: https://sidequestvr.com/developers
-- type: Website
-  url: sidequestvr.com
 x-enrichment:
   date: '2026-07-21'
   status: enriched
