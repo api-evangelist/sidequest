@@ -1,0 +1,657 @@
+{
+  "item": [
+    {
+      "id": "77f7445a-117d-4d13-a53d-41e2d54be2db",
+      "name": "Apps",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e93b987f-7d91-4429-b1b1-4258a9545437",
+          "name": "Get Apps",
+          "request": {
+            "name": "Get Apps",
+            "description": {
+              "content": "Retrieves a listing of apps",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "apps"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "app_categories",
+                  "value": "<string>",
+                  "description": "A comma-separated list of app categories\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "hide_sidelined",
+                  "value": "<string>",
+                  "description": "only shows apps that have not been sidelined\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "app_license",
+                  "value": "<string>",
+                  "description": "A comma-separated list of license types\n * FREE - Free app\n * PAID - Paid app\n * OPENSOURCE - Open source app\n * DEMO - Demo app\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "app_platform",
+                  "value": "<string>",
+                  "description": "A comma-separated list of supported app platforms\n * 1 - Oculus Quest\n * 2 - Oculus Go\n * 3 - WebXR\n * 4 - Oculus Link\n * 5 - Other\n * 6 - Pico\n * 7 - Magic Leap\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "app_comfort_level",
+                  "value": "<string>",
+                  "description": "A comma-separated list of comfort levels\n * 0 - Comfortable\n * 1 - Moderate\n * 2 - Average\n * 3 - Exciting\n * 4 - Intense\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "app_download_method",
+                  "value": "<string>",
+                  "description": "A comma-separated list of download methods to query on\n * 1 - AppLab\n * 2 - Oculus Store\n * 3 - SideQuest, Itch, or other (requires sideloading)\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "app_ids",
+                  "value": "<string>",
+                  "description": "A comma-separated list of app ids\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "skip",
+                  "value": "<integer>",
+                  "description": "Skips a number of objects from the start of the list.  Used for paging."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Limits the number of objects returned."
+                },
+                {
+                  "disabled": false,
+                  "key": "staff_picks",
+                  "value": "<boolean>",
+                  "description": "Filters the returned rows by whether the app is selected as a staff pick."
+                },
+                {
+                  "disabled": false,
+                  "key": "supports_pico",
+                  "value": "<boolean>",
+                  "description": "Filters the returned rows by whether the app supports the Pico."
+                },
+                {
+                  "disabled": false,
+                  "key": "supports_magic_leap",
+                  "value": "<boolean>",
+                  "description": "Filters the returned rows by whether the app supports the Magic Leap."
+                },
+                {
+                  "disabled": false,
+                  "key": "has_oculus_url",
+                  "value": "<boolean>",
+                  "description": "Filters the returned rows by whether the app has an Oculus URL and is an App Lab or Oculus Store app."
+                },
+                {
+                  "disabled": false,
+                  "key": "early_access",
+                  "value": "<boolean>",
+                  "description": "Filters the returned rows by whether the app is marked as early access."
+                },
+                {
+                  "disabled": false,
+                  "key": "updated_since",
+                  "value": "<integer>",
+                  "description": "Filters the returned rows by those that have been updated after the provided unix UTC timestamp IN MILLISECONDS."
+                },
+                {
+                  "disabled": false,
+                  "key": "created_since",
+                  "value": "<integer>",
+                  "description": "Filters the returned rows by those that have created after the provided unix UTC timestamp IN MILLISECONDS."
+                },
+                {
+                  "disabled": false,
+                  "key": "search",
+                  "value": "<string>",
+                  "description": "Filters the returned rows by a search phrase to quickly find apps by name and search tags."
+                },
+                {
+                  "disabled": false,
+                  "key": "full_search",
+                  "value": "<string>",
+                  "description": "Filters the returned rows by a search phrase to search the name, search tags, summary and description for an app."
+                },
+                {
+                  "disabled": false,
+                  "key": "sortOn",
+                  "value": "<string>",
+                  "description": "Sorts the returned object by one or more parameters.  Multiple values can be separated by a comma for sorting on multiple fields.\n * name - The app name\n * created - The app created date\n * updated - The last date the app was updated\n * sort_rating - A rating for apps\n * hot_sort_rating - A 'hot' rating for apps\n * early_access - Whether the app is early access or not\n * downloads - How many downloads the app has\n * search_rank - The search rank when 'search' is specified as a filter\n * full_search_rank - the search rank when 'full_search' is specified as a filter\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "descending",
+                  "value": "<string>",
+                  "description": "Orders the results in descending order based on the sortOn specified.  If there are multiple sortOns specified, multiple values can be separated by a comma for each corresponding sortOn."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d9a1d618-1ed5-489b-b487-5facac82bf8d",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "apps"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "app_categories",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "hide_sidelined",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "app_license",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "app_platform",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "app_comfort_level",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "app_download_method",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "app_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "skip",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "staff_picks",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "supports_pico",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "supports_magic_leap",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "has_oculus_url",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "early_access",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "updated_since",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "created_since",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "full_search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortOn",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "descending",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"apps_id\": 3572,\n    \"name\": {},\n    \"summary\": {},\n    \"description\": {},\n    \"image_url\": {},\n    \"video_url\": {},\n    \"website\": {},\n    \"supports_go\": {},\n    \"supports_quest\": {},\n    \"supports_pico\": false,\n    \"supports_magic_leap\": false,\n    \"supports_link\": {},\n    \"supports_other\": {},\n    \"is_webxr\": {},\n    \"created\": {},\n    \"updated\": {},\n    \"license\": \"PAID\",\n    \"oculus_url\": {},\n    \"external_listing_url\": {},\n    \"oculus_sync_enabled\": true,\n    \"last_oculus_sync\": {}\n  },\n  {\n    \"apps_id\": 8749,\n    \"name\": {},\n    \"summary\": {},\n    \"description\": {},\n    \"image_url\": {},\n    \"video_url\": {},\n    \"website\": {},\n    \"supports_go\": {},\n    \"supports_quest\": {},\n    \"supports_pico\": true,\n    \"supports_magic_leap\": false,\n    \"supports_link\": {},\n    \"supports_other\": {},\n    \"is_webxr\": {},\n    \"created\": {},\n    \"updated\": {},\n    \"license\": \"FREE\",\n    \"oculus_url\": {},\n    \"external_listing_url\": {},\n    \"oculus_sync_enabled\": true,\n    \"last_oculus_sync\": {}\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "716f235b-2025-4373-abae-e432fde23b67",
+              "name": "The data provided to the call was incorrect or incomplete.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "apps"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "app_categories",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "hide_sidelined",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "app_license",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "app_platform",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "app_comfort_level",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "app_download_method",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "app_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "skip",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "staff_picks",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "supports_pico",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "supports_magic_leap",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "has_oculus_url",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "early_access",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "updated_since",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "created_since",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "full_search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortOn",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "descending",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d1c39d4a-145d-4a44-82ee-3c8c0e15f76d",
+              "name": "Access denied- the authorization token provided does not have access to the resource.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "apps"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "app_categories",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "hide_sidelined",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "app_license",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "app_platform",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "app_comfort_level",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "app_download_method",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "app_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "skip",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "staff_picks",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "supports_pico",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "supports_magic_leap",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "has_oculus_url",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "early_access",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "updated_since",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "created_since",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "full_search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortOn",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "descending",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "d78271a9-8029-42e6-9775-df4be3041c3e",
+              "name": "No resource was found at the target path or the authorization token provided does not have access to know that it exists.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "apps"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "app_categories",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "hide_sidelined",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "app_license",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "app_platform",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "app_comfort_level",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "app_download_method",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "app_ids",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "skip",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "staff_picks",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "supports_pico",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "supports_magic_leap",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "has_oculus_url",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "early_access",
+                      "value": "<boolean>"
+                    },
+                    {
+                      "key": "updated_since",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "created_since",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "full_search",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortOn",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "descending",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.sidequestvr.com/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "8c6ebc09-5088-45ae-822a-112b80c41346",
+    "name": "SideQuest Apps API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API for interacting with SideQuest",
+      "type": "text/plain"
+    }
+  }
+}

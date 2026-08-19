@@ -1,0 +1,77 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "SideQuest Apps UsersApps API",
+    "version": "0.2.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "UsersApps",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get User App Achievements",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.sidequestvr.com/v2/users/:route_users_id/apps/:apps_id/achievements",
+            "params": [
+              {
+                "name": "route_users_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique user ID or \"me\"\n"
+              },
+              {
+                "name": "apps_id",
+                "value": "",
+                "type": "path",
+                "description": "The unique app ID or \"me\"\n"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "Skips a number of objects from the start of the list.  Used for paging."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Limits the number of objects returned."
+              },
+              {
+                "name": "name",
+                "value": "",
+                "type": "query",
+                "description": "Filters the returned rows by the name of the achievement.  The % (url encoded as %25) can be included in the string as a wildcard."
+              },
+              {
+                "name": "sortOn",
+                "value": "",
+                "type": "query",
+                "description": "Sorts the returned object by one or more parameters.  Multiple values can be separated by a comma for sorting on multiple fields.\n * created_at - The timestamp when the achievement was created\n * name - The name of the achievement\n * status - The status of the achievement\n"
+              },
+              {
+                "name": "descending",
+                "value": "",
+                "type": "query",
+                "description": "Orders the results in descending order based on the sortOn specified.  If there are multiple sortOns specified, multiple values can be separated by a comma for each corresponding sortOn."
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Gets a listing of achievements a user has unlocked for an app\n\n```\nRequired Scopes:\n-user.app_achievements.read\n```"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

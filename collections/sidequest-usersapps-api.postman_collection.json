@@ -1,0 +1,462 @@
+{
+  "item": [
+    {
+      "id": "ea216beb-1b1b-4e44-9223-6725263d0a58",
+      "name": "UsersApps",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "53fefe25-83ee-4a49-8d85-dbf6d4946fc6",
+          "name": "Get User App Achievements",
+          "request": {
+            "name": "Get User App Achievements",
+            "description": {
+              "content": "Gets a listing of achievements a user has unlocked for an app\n\n```\nRequired Scopes:\n-user.app_achievements.read\n```",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "v2",
+                "users",
+                ":route_users_id",
+                "apps",
+                ":apps_id",
+                "achievements"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "skip",
+                  "value": "<integer>",
+                  "description": "Skips a number of objects from the start of the list.  Used for paging."
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "<integer>",
+                  "description": "Limits the number of objects returned."
+                },
+                {
+                  "disabled": false,
+                  "key": "name",
+                  "value": "<string>",
+                  "description": "Filters the returned rows by the name of the achievement.  The % (url encoded as %25) can be included in the string as a wildcard."
+                },
+                {
+                  "disabled": false,
+                  "key": "sortOn",
+                  "value": "<string>",
+                  "description": "Sorts the returned object by one or more parameters.  Multiple values can be separated by a comma for sorting on multiple fields.\n * created_at - The timestamp when the achievement was created\n * name - The name of the achievement\n * status - The status of the achievement\n"
+                },
+                {
+                  "disabled": false,
+                  "key": "descending",
+                  "value": "<string>",
+                  "description": "Orders the results in descending order based on the sortOn specified.  If there are multiple sortOns specified, multiple values can be separated by a comma for each corresponding sortOn."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "route_users_id",
+                  "description": "(Required) The unique user ID or \"me\"\n"
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "apps_id",
+                  "description": "(Required) The unique app ID or \"me\"\n"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "{{bearerToken}}"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "e714d3bb-218e-4338-9dfc-18cb7095305f",
+              "name": "Success",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "users",
+                    ":route_users_id",
+                    "apps",
+                    ":apps_id",
+                    "achievements"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "skip",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortOn",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "descending",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "route_users_id",
+                      "description": "(Required) The unique user ID or \"me\"\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "apps_id",
+                      "description": "(Required) The unique app ID or \"me\"\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"achievement_identifier\": \"string\",\n  \"name\": \"string\",\n  \"image\": \"string\",\n  \"icon\": {},\n  \"status\": \"hidden\",\n  \"created_at\": \"1970-04-20 07:10:00+00\",\n  \"description\": {},\n  \"unlocked_at\": \"1970-04-20 07:10:00+00\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d8c51b13-bf85-4f7b-8318-0b4b49bdb722",
+              "name": "The data provided to the call was incorrect or incomplete.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "users",
+                    ":route_users_id",
+                    "apps",
+                    ":apps_id",
+                    "achievements"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "skip",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortOn",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "descending",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "route_users_id",
+                      "description": "(Required) The unique user ID or \"me\"\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "apps_id",
+                      "description": "(Required) The unique app ID or \"me\"\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "cf1c10af-9db4-495a-b0aa-e255091bdcb2",
+              "name": "Access denied- the authorization token provided does not have access to the resource.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "users",
+                    ":route_users_id",
+                    "apps",
+                    ":apps_id",
+                    "achievements"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "skip",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortOn",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "descending",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "route_users_id",
+                      "description": "(Required) The unique user ID or \"me\"\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "apps_id",
+                      "description": "(Required) The unique app ID or \"me\"\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "aaadcefc-d452-4e1a-b9f7-c3a16f835daa",
+              "name": "No resource was found at the target path or the authorization token provided does not have access to know that it exists.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "v2",
+                    "users",
+                    ":route_users_id",
+                    "apps",
+                    ":apps_id",
+                    "achievements"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "skip",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "name",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "sortOn",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "descending",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "route_users_id",
+                      "description": "(Required) The unique user ID or \"me\"\n"
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "apps_id",
+                      "description": "(Required) The unique app ID or \"me\"\n"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.sidequestvr.com/",
+      "key": "baseUrl"
+    }
+  ],
+  "info": {
+    "_postman_id": "61e2ca5a-eba5-4cdd-93ab-b464fc4fe74c",
+    "name": "SideQuest Apps UsersApps API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "API for interacting with SideQuest",
+      "type": "text/plain"
+    }
+  }
+}

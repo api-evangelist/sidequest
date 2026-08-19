@@ -1,0 +1,59 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "SideQuest Apps OAuth2 API",
+    "version": "0.2.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "OAuth2",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.sidequestvr.com/v2/oauth/token"
+          },
+          "docs": "Used by the client to obtain an access token by presenting an authorization grant or refresh token"
+        },
+        {
+          "info": {
+            "name": "Get Login Short Code",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.sidequestvr.com/v2/oauth/getshortcode",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Generates a new login short code"
+        },
+        {
+          "info": {
+            "name": "Check Short Code",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.sidequestvr.com/v2/oauth/checkshortcode",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Check the status of a short code that was generated, retrieving auth credentials if it's been redeemed and device_id matches"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

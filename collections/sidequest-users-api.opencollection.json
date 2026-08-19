@@ -1,0 +1,60 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "SideQuest Apps Users API",
+    "version": "0.2.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Users",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get User Profile",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.sidequestvr.com/v2/users/:route_users_id",
+            "params": [
+              {
+                "name": "route_users_id",
+                "value": "",
+                "type": "path",
+                "description": "The users unique ID or \"me\"\n"
+              }
+            ],
+            "auth": {
+              "type": "bearer",
+              "token": "{{bearerToken}}"
+            }
+          },
+          "docs": "Retrieves a users profile information, only returns public info for requests made with a scoped token.\n\n```\nRequired Scopes:\n-user.basic_profile.read\n```"
+        },
+        {
+          "info": {
+            "name": "View User Profile",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.sidequestvr.com/v2/users/:route_users_id/view-profile",
+            "params": [
+              {
+                "name": "route_users_id",
+                "value": "",
+                "type": "path",
+                "description": "The users unique ID or \"me\"\n"
+              }
+            ]
+          },
+          "docs": "Gets a users public profile."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

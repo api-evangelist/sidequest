@@ -1,0 +1,169 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "SideQuest Apps API",
+    "version": "0.2.0"
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Apps",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Apps",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.sidequestvr.com/v2/apps",
+            "params": [
+              {
+                "name": "app_categories",
+                "value": "",
+                "type": "query",
+                "description": "A comma-separated list of app categories\n"
+              },
+              {
+                "name": "hide_sidelined",
+                "value": "",
+                "type": "query",
+                "description": "only shows apps that have not been sidelined\n"
+              },
+              {
+                "name": "app_license",
+                "value": "",
+                "type": "query",
+                "description": "A comma-separated list of license types\n * FREE - Free app\n * PAID - Paid app\n * OPENSOURCE - Open source app\n * DEMO - Demo app\n"
+              },
+              {
+                "name": "app_platform",
+                "value": "",
+                "type": "query",
+                "description": "A comma-separated list of supported app platforms\n * 1 - Oculus Quest\n * 2 - Oculus Go\n * 3 - WebXR\n * 4 - Oculus Link\n * 5 - Other\n * 6 - Pico\n * 7 - Magic Leap\n"
+              },
+              {
+                "name": "app_comfort_level",
+                "value": "",
+                "type": "query",
+                "description": "A comma-separated list of comfort levels\n * 0 - Comfortable\n * 1 - Moderate\n * 2 - Average\n * 3 - Exciting\n * 4 - Intense\n"
+              },
+              {
+                "name": "app_download_method",
+                "value": "",
+                "type": "query",
+                "description": "A comma-separated list of download methods to query on\n * 1 - AppLab\n * 2 - Oculus Store\n * 3 - SideQuest, Itch, or other (requires sideloading)\n"
+              },
+              {
+                "name": "app_ids",
+                "value": "",
+                "type": "query",
+                "description": "A comma-separated list of app ids\n"
+              },
+              {
+                "name": "skip",
+                "value": "",
+                "type": "query",
+                "description": "Skips a number of objects from the start of the list.  Used for paging."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Limits the number of objects returned."
+              },
+              {
+                "name": "staff_picks",
+                "value": "",
+                "type": "query",
+                "description": "Filters the returned rows by whether the app is selected as a staff pick."
+              },
+              {
+                "name": "supports_quest",
+                "value": "",
+                "type": "query",
+                "description": "Filters the returned rows by whether the app supports the Quest/Quest2."
+              },
+              {
+                "name": "supports_pico",
+                "value": "",
+                "type": "query",
+                "description": "Filters the returned rows by whether the app supports the Pico."
+              },
+              {
+                "name": "supports_magic_leap",
+                "value": "",
+                "type": "query",
+                "description": "Filters the returned rows by whether the app supports the Magic Leap."
+              },
+              {
+                "name": "is_webxr",
+                "value": "",
+                "type": "query",
+                "description": "Filters the returned rows by whether the app supports WebXR."
+              },
+              {
+                "name": "supports_link",
+                "value": "",
+                "type": "query",
+                "description": "Filters the returned rows by whether the app supports Oculus Link."
+              },
+              {
+                "name": "has_oculus_url",
+                "value": "",
+                "type": "query",
+                "description": "Filters the returned rows by whether the app has an Oculus URL and is an App Lab or Oculus Store app."
+              },
+              {
+                "name": "early_access",
+                "value": "",
+                "type": "query",
+                "description": "Filters the returned rows by whether the app is marked as early access."
+              },
+              {
+                "name": "updated_since",
+                "value": "",
+                "type": "query",
+                "description": "Filters the returned rows by those that have been updated after the provided unix UTC timestamp IN MILLISECONDS."
+              },
+              {
+                "name": "created_since",
+                "value": "",
+                "type": "query",
+                "description": "Filters the returned rows by those that have created after the provided unix UTC timestamp IN MILLISECONDS."
+              },
+              {
+                "name": "search",
+                "value": "",
+                "type": "query",
+                "description": "Filters the returned rows by a search phrase to quickly find apps by name and search tags."
+              },
+              {
+                "name": "full_search",
+                "value": "",
+                "type": "query",
+                "description": "Filters the returned rows by a search phrase to search the name, search tags, summary and description for an app."
+              },
+              {
+                "name": "sortOn",
+                "value": "",
+                "type": "query",
+                "description": "Sorts the returned object by one or more parameters.  Multiple values can be separated by a comma for sorting on multiple fields.\n * name - The app name\n * created - The app created date\n * updated - The last date the app was updated\n * sort_rating - A rating for apps\n * hot_sort_rating - A 'hot' rating for apps\n * early_access - Whether the app is early access or not\n * downloads - How many downloads the app has\n * search_rank - The search rank when 'search' is specified as a filter\n * full_search_rank - the search rank when 'full_search' is specified as a filter\n"
+              },
+              {
+                "name": "descending",
+                "value": "",
+                "type": "query",
+                "description": "Orders the results in descending order based on the sortOn specified.  If there are multiple sortOns specified, multiple values can be separated by a comma for each corresponding sortOn."
+              }
+            ]
+          },
+          "docs": "Retrieves a listing of apps"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
