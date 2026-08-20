@@ -46,6 +46,8 @@ apis:
   humanURL: https://api.sidequestvr.com/docs
   baseURL: https://api.sidequestvr.com
   tags:
+  - Application
+  tags_raw:
   - Apps
   properties:
   - type: OpenAPI
@@ -70,6 +72,8 @@ apis:
   humanURL: https://api.sidequestvr.com/docs
   baseURL: https://api.sidequestvr.com
   tags:
+  - Authentication
+  tags_raw:
   - OAuth2
   properties:
   - type: OpenAPI
@@ -82,6 +86,8 @@ apis:
   humanURL: https://api.sidequestvr.com/docs
   baseURL: https://api.sidequestvr.com
   tags:
+  - User
+  tags_raw:
   - Users
   properties:
   - type: OpenAPI
