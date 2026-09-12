@@ -124,6 +124,8 @@ maintainers:
 - FN: APIs.json
   email: info@apis.io
 common:
+- type: Website
+  url: https://www.sidequestvr.com/
 - type: OpenAPI
   url: openapi/_original/sidequest-openapi.json
 - type: Authentication
