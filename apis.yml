@@ -78,20 +78,6 @@ apis:
     url: openapi/sidequest-developers-api-openapi.yml
   - type: APIReference
     url: https://api.sidequestvr.com/docs
-- aid: sidequest:sidequest-oauth2-api
-  name: SideQuest OAuth2 API
-  description: The OAuth2 API from SideQuest — 3 operation(s) for oauth2.
-  humanURL: https://api.sidequestvr.com/docs
-  baseURL: https://api.sidequestvr.com
-  tags:
-  - Authentication
-  tags_raw:
-  - OAuth2
-  properties:
-  - type: OpenAPI
-    url: openapi/sidequest-oauth2-api-openapi.yml
-  - type: APIReference
-    url: https://api.sidequestvr.com/docs
 - aid: sidequest:sidequest-users-api
   name: SideQuest Users API
   description: The Users API from SideQuest — 2 operation(s) for users.
@@ -116,6 +102,18 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/sidequest-usersapps-api-openapi.yml
+  - type: APIReference
+    url: https://api.sidequestvr.com/docs
+- aid: sidequest:sidequest-oauth2-api
+  name: SideQuest O Auth2 API
+  description: The OAuth2 API from SideQuest — 3 operation(s) for oauth2.
+  humanURL: https://api.sidequestvr.com/docs
+  baseURL: https://api.sidequestvr.com
+  tags:
+  - OAuth2
+  properties:
+  - type: OpenAPI
+    url: openapi/sidequest-oauth2-api-openapi.yml
   - type: APIReference
     url: https://api.sidequestvr.com/docs
 maintainers:
