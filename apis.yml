@@ -110,6 +110,8 @@ apis:
   humanURL: https://api.sidequestvr.com/docs
   baseURL: https://api.sidequestvr.com
   tags:
+  - Authentication
+  tags_raw:
   - OAuth2
   properties:
   - type: OpenAPI
