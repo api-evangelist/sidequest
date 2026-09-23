@@ -1,6 +1,6 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: SideQuest Apps Users API
+  title: SideQuest Users API
   description: API for interacting with SideQuest
   contact: {}
   license:
@@ -64,6 +64,8 @@ paths:
           type: string
         in: path
         required: true
+      operationId: getV2UsersByRouteUsersId
+      x-operation-id-source: derived
   /v2/users/{route_users_id}/view-profile:
     summary: Users
     get:
@@ -105,50 +107,10 @@ paths:
           type: string
         in: path
         required: true
+      operationId: getV2UsersByRouteUsersIdViewProfile
+      x-operation-id-source: derived
 components:
   schemas:
-    Composite_PublicUserModel_UserLevelingInfo:
-      type: object
-      properties:
-        profile_type:
-          type: string
-          enum:
-          - Gamer
-          - Developer
-          - Streamer
-          - Influencer
-          description: "The users profile type\n * Gamer - Normal SideQuest user\n * Developer - An app developer\n * Streamer - A streamer or content creator\n * Influencer - A public influencer\n"
-        users_id:
-          type: integer
-          description: The users unique ID
-        name:
-          type: object
-          description: The users display name
-        preview_image:
-          type: string
-          description: The users avatar preview image
-        score_points:
-          type: object
-          description: The users total score points
-        tag_line:
-          type: object
-          description: The users tag line
-        created:
-          type: object
-          description: The time this user was created
-        bio:
-          type: object
-          description: The users bio
-      required:
-      - profile_type
-      - users_id
-      - name
-      - preview_image
-      - score_points
-      - tag_line
-      - created
-      - bio
-      description: public representation of a user
     Composite_UserModel_UserLevelingInfo:
       type: object
       properties:
@@ -215,6 +177,48 @@ components:
       - user_title
       - has_custom_title
       description: represents a user
+    Composite_PublicUserModel_UserLevelingInfo:
+      type: object
+      properties:
+        profile_type:
+          type: string
+          enum:
+          - Gamer
+          - Developer
+          - Streamer
+          - Influencer
+          description: "The users profile type\n * Gamer - Normal SideQuest user\n * Developer - An app developer\n * Streamer - A streamer or content creator\n * Influencer - A public influencer\n"
+        users_id:
+          type: integer
+          description: The users unique ID
+        name:
+          type: object
+          description: The users display name
+        preview_image:
+          type: string
+          description: The users avatar preview image
+        score_points:
+          type: object
+          description: The users total score points
+        tag_line:
+          type: object
+          description: The users tag line
+        created:
+          type: object
+          description: The time this user was created
+        bio:
+          type: object
+          description: The users bio
+      required:
+      - profile_type
+      - users_id
+      - name
+      - preview_image
+      - score_points
+      - tag_line
+      - created
+      - bio
+      description: public representation of a user
   securitySchemes:
     userAuth:
       type: http

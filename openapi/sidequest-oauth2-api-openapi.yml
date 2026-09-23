@@ -1,6 +1,6 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: SideQuest Apps OAuth2 API
+  title: SideQuest O Auth2 API
   description: API for interacting with SideQuest
   contact: {}
   license:
@@ -37,6 +37,8 @@ paths:
           application/x-www-url-formencoded:
             schema:
               $ref: '#/components/schemas/OAuthTokenRequest'
+      operationId: postV2OauthToken
+      x-operation-id-source: derived
   /v2/oauth/getshortcode:
     summary: OAuth2
     post:
@@ -63,6 +65,8 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/GetShortCodeRequest'
+      operationId: postV2OauthGetshortcode
+      x-operation-id-source: derived
   /v2/oauth/checkshortcode:
     summary: OAuth2
     post:
@@ -95,8 +99,28 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/CheckShortCodeRequest'
+      operationId: postV2OauthCheckshortcode
+      x-operation-id-source: derived
 components:
   schemas:
+    OAuthTokenRequest:
+      description: An OAuth token request
+      properties:
+        grant_type:
+          type: string
+          enum:
+          - refresh_token
+          description: "The grant type\n * refresh_token - Generate a new access token by providing a refresh token\n"
+        refresh_token:
+          type: string
+          description: The refresh token to get a new access token for when grant_type is refresh
+        client_id:
+          type: string
+          description: The client id associated with the oauth client
+      required:
+      - grant_type
+      - refresh_token
+      - client_id
     AuthAccessTokenResponse:
       description: A response containing details about an authorization access token
       properties:
@@ -144,32 +168,41 @@ components:
       - users_id
       - apps_id
       - client_id
-    ShortCodeDetails:
-      description: Details about a generated short code login request
+    GetShortCodeRequest:
+      description: Details needed to generate a login short code
       properties:
-        code:
+        client_id:
           type: string
-          description: The short code that should be displayed to a user to use for login
-        device_id:
-          type: string
-          description: The identifier for this device's request that will be needed to check the status of the short code login
-        expires_at:
-          type: string
-          format: date-time
-          example: '1970-04-20 07:10:00+00'
-          description: The date and time at which the short code has expired and is no longer valid
-        interval:
+          description: The API client id generated from your app management dashboard.
+        scopes:
+          type: array
+          items:
+            type: string
+            enum:
+            - user.basic_profile.read
+            - user.app_achievements.read
+            - user.app_achievements.write
+            - user.avatars.read
+            - user.avatars.write
+            - user.friends.read
+            - user.friends.write
+            - user.rich_presence.write
+            - user.communities.read
+            - user.communities.write
+            - user.messages.read
+            - user.messages.write
+            - user.messagehistory.read
+            description: "\n * user.basic_profile.read - The basic user profile can be read\n * user.app_achievements.read - The user's achievements for the scoped app can be read\n * user.app_achievements.write - The user's achievements for the scoped app can be written\n * user.avatars.read - Read the users avatars\n * user.avatars.write - Write the users avatar\n * user.friends.read - Read the users friends list\n * user.friends.write - Add and remove friends\n * user.rich_presence.write - Update the users rich presence status\n * user.communities.read - Get info about communities the user is a member of\n * user.communities.write - Join and leave communities\n * user.messages.read - Receive messages from other users\n * user.messages.write - Send messages to other users\n * user.messagehistory.read - Read the full message history of the user\n"
+          description: The list of scopes to request from the user.
+        version:
           type: integer
-          description: How often (in seconds) you may poll to check the short code's status
-        verification_url:
-          type: string
-          description: The URL that the user should visit to enter their short code
+          enum:
+          - '1'
+          - '2'
+          description: "Determines the format of the shortcode returned (defaults to v1)\n * 1 - a 6 digit numeric shortcode\n * 2 - a 6 digit code consisting of numbers and uppercase letters, excluding 1, I, 0, and O\n"
       required:
-      - code
-      - device_id
-      - expires_at
-      - interval
-      - verification_url
+      - client_id
+      - scopes
     AuthFullTokenResponse:
       description: A full token response including refresh and access tokens
       properties:
@@ -227,24 +260,6 @@ components:
       - apps_id
       - client_id
       - refresh_token_expires_at
-    OAuthTokenRequest:
-      description: An OAuth token request
-      properties:
-        grant_type:
-          type: string
-          enum:
-          - refresh_token
-          description: "The grant type\n * refresh_token - Generate a new access token by providing a refresh token\n"
-        refresh_token:
-          type: string
-          description: The refresh token to get a new access token for when grant_type is refresh
-        client_id:
-          type: string
-          description: The client id associated with the oauth client
-      required:
-      - grant_type
-      - refresh_token
-      - client_id
     CheckShortCodeRequest:
       description: Details about a short code login request to check
       properties:
@@ -257,41 +272,32 @@ components:
       required:
       - device_id
       - code
-    GetShortCodeRequest:
-      description: Details needed to generate a login short code
+    ShortCodeDetails:
+      description: Details about a generated short code login request
       properties:
-        client_id:
+        code:
           type: string
-          description: The API client id generated from your app management dashboard.
-        scopes:
-          type: array
-          items:
-            type: string
-            enum:
-            - user.basic_profile.read
-            - user.app_achievements.read
-            - user.app_achievements.write
-            - user.avatars.read
-            - user.avatars.write
-            - user.friends.read
-            - user.friends.write
-            - user.rich_presence.write
-            - user.communities.read
-            - user.communities.write
-            - user.messages.read
-            - user.messages.write
-            - user.messagehistory.read
-            description: "\n * user.basic_profile.read - The basic user profile can be read\n * user.app_achievements.read - The user's achievements for the scoped app can be read\n * user.app_achievements.write - The user's achievements for the scoped app can be written\n * user.avatars.read - Read the users avatars\n * user.avatars.write - Write the users avatar\n * user.friends.read - Read the users friends list\n * user.friends.write - Add and remove friends\n * user.rich_presence.write - Update the users rich presence status\n * user.communities.read - Get info about communities the user is a member of\n * user.communities.write - Join and leave communities\n * user.messages.read - Receive messages from other users\n * user.messages.write - Send messages to other users\n * user.messagehistory.read - Read the full message history of the user\n"
-          description: The list of scopes to request from the user.
-        version:
+          description: The short code that should be displayed to a user to use for login
+        device_id:
+          type: string
+          description: The identifier for this device's request that will be needed to check the status of the short code login
+        expires_at:
+          type: string
+          format: date-time
+          example: '1970-04-20 07:10:00+00'
+          description: The date and time at which the short code has expired and is no longer valid
+        interval:
           type: integer
-          enum:
-          - '1'
-          - '2'
-          description: "Determines the format of the shortcode returned (defaults to v1)\n * 1 - a 6 digit numeric shortcode\n * 2 - a 6 digit code consisting of numbers and uppercase letters, excluding 1, I, 0, and O\n"
+          description: How often (in seconds) you may poll to check the short code's status
+        verification_url:
+          type: string
+          description: The URL that the user should visit to enter their short code
       required:
-      - client_id
-      - scopes
+      - code
+      - device_id
+      - expires_at
+      - interval
+      - verification_url
   securitySchemes:
     userAuth:
       type: http

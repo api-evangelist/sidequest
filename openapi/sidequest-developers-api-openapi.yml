@@ -1,6 +1,6 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: SideQuest Apps Developers API
+  title: SideQuest Developers API
   description: API for interacting with SideQuest
   contact: {}
   license:
@@ -25,6 +25,8 @@ paths:
                 type: string
       tags:
       - Developers
+      operationId: getV2Developers
+      x-operation-id-source: derived
 components:
   securitySchemes:
     userAuth:

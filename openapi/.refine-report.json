@@ -1,11 +1,7 @@
 {
   "provider": "sidequest",
   "sources": [
-    "sidequest-apps-api-openapi.yml",
-    "sidequest-developers-api-openapi.yml",
-    "sidequest-oauth2-api-openapi.yml",
-    "sidequest-users-api-openapi.yml",
-    "sidequest-usersapps-api-openapi.yml"
+    "_original/sidequest-openapi.json"
   ],
   "outputs": [
     "sidequest-apps-api-openapi.yml",
@@ -14,9 +10,27 @@
     "sidequest-users-api-openapi.yml",
     "sidequest-usersapps-api-openapi.yml"
   ],
-  "archived": [],
+  "archived": [
+    "deleted 1 superseded output(s) from the previous generation"
+  ],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "sidequest-openapi.json: upgraded openapi 3.0.0 -> OpenAPI 3.2.0",
+    "sidequest-openapi.json: declared missing tag: Apps",
+    "sidequest-openapi.json: declared missing tag: Developers",
+    "sidequest-openapi.json: declared missing tag: OAuth2",
+    "sidequest-openapi.json: declared missing tag: Users",
+    "sidequest-openapi.json: declared missing tag: UsersApps",
+    "superseded outputs removed: sidequest-o-auth2-api-openapi.yml",
+    "apis.yml register: written (+1 apis, 5 total)"
+  ],
+  "skipped": [
+    "sidequest-apps-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "sidequest-developers-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "sidequest-o-auth2-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "sidequest-users-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "sidequest-usersapps-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
