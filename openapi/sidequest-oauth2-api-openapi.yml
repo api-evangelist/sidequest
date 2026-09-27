@@ -103,24 +103,18 @@ paths:
       x-operation-id-source: derived
 components:
   schemas:
-    OAuthTokenRequest:
-      description: An OAuth token request
+    CheckShortCodeRequest:
+      description: Details about a short code login request to check
       properties:
-        grant_type:
+        device_id:
           type: string
-          enum:
-          - refresh_token
-          description: "The grant type\n * refresh_token - Generate a new access token by providing a refresh token\n"
-        refresh_token:
+          description: The device_id returned from the creation of a short code
+        code:
           type: string
-          description: The refresh token to get a new access token for when grant_type is refresh
-        client_id:
-          type: string
-          description: The client id associated with the oauth client
+          description: The short code
       required:
-      - grant_type
-      - refresh_token
-      - client_id
+      - device_id
+      - code
     AuthAccessTokenResponse:
       description: A response containing details about an authorization access token
       properties:
@@ -260,18 +254,24 @@ components:
       - apps_id
       - client_id
       - refresh_token_expires_at
-    CheckShortCodeRequest:
-      description: Details about a short code login request to check
+    OAuthTokenRequest:
+      description: An OAuth token request
       properties:
-        device_id:
+        grant_type:
           type: string
-          description: The device_id returned from the creation of a short code
-        code:
+          enum:
+          - refresh_token
+          description: "The grant type\n * refresh_token - Generate a new access token by providing a refresh token\n"
+        refresh_token:
           type: string
-          description: The short code
+          description: The refresh token to get a new access token for when grant_type is refresh
+        client_id:
+          type: string
+          description: The client id associated with the oauth client
       required:
-      - device_id
-      - code
+      - grant_type
+      - refresh_token
+      - client_id
     ShortCodeDetails:
       description: Details about a generated short code login request
       properties:
